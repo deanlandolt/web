@@ -1,0 +1,11 @@
+node_modules
+site/.vitepress/dist
+site/.vitepress/cache
+*.html
+pnpm-lock.yaml
+
+# Generated files — produced by build scripts, not formatted by Prettier.
+*.generated.*
+
+# Scratch / planning docs — never content, never formatted.
+.scratch/

@@ -1,0 +1,35 @@
+{
+  "name": "@deanlandolt/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "deanlandolt.com — a personal site built with VitePress.",
+  "scripts": {
+    "dev": "pnpm gen:quotes && vitepress dev site",
+    "build": "pnpm gen:quotes && vitepress build site",
+    "preview": "vitepress preview site",
+    "gen:quotes": "node scripts/gen-quotes.mjs",
+    "format": "prettier --write \"site/**/*.{md,uncommitted.md,ts,js,vue,json,mjs}\" \"scripts/**/*.mjs\"",
+    "format:check": "prettier --check \"site/**/*.{md,uncommitted.md,ts,js,vue,json,mjs}\" \"scripts/**/*.mjs\""
+  },
+  "dependencies": {
+    "@mdit/plugin-katex": "^1.1.0",
+    "katex": "^0.18.4",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^5.2.3",
+    "prettier": "^3.9.6",
+    "vitepress": "^1.6.3"
+  },
+  "packageManager": "pnpm@10.18.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

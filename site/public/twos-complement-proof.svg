@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" font-family="monospace">
+  <style>
+    .label { fill: var(--vp-c-text-2, #888); font-size: 13px; }
+    .bits { fill: var(--vp-c-text-1, #333); font-size: 22px; letter-spacing: 0.15em; }
+    .ellipsis { fill: var(--vp-c-text-3, #aaa); font-size: 22px; }
+    .arrow { fill: var(--vp-c-text-2, #888); font-size: 16px; }
+    .result { fill: var(--vp-c-brand-1, #3451b2); font-size: 22px; letter-spacing: 0.15em; font-weight: bold; }
+    .note { fill: var(--vp-c-text-3, #aaa); font-size: 12px; font-style: italic; }
+  </style>
+
+  <!-- Row 1: X -->
+  <text x="120" y="50" class="label" text-anchor="end">X =</text>
+  <text x="140" y="50" class="ellipsis">…</text>
+  <text x="170" y="50" class="bits">1 1 1 1 1 1</text>
+
+  <!-- Row 2: + X -->
+  <text x="120" y="90" class="label" text-anchor="end">+ X =</text>
+  <text x="140" y="90" class="ellipsis">…</text>
+  <text x="170" y="90" class="bits">1 1 1 1 1 1</text>
+
+  <!-- Divider -->
+  <line x1="135" y1="105" x2="375" y2="105" stroke="var(--vp-c-divider, #ddd)" stroke-width="1"/>
+
+  <!-- Row 3: 2X = X - 1 -->
+  <text x="120" y="135" class="label" text-anchor="end">2X =</text>
+  <text x="140" y="135" class="ellipsis">…</text>
+  <text x="170" y="135" class="bits">1 1 1 1 1 0</text>
+
+  <!-- Annotation: the carry ripples forever -->
+  <text x="395" y="135" class="note">← carry ripples left, forever</text>
+
+  <!-- Arrow down -->
+  <text x="240" y="170" class="arrow" text-anchor="middle">↓</text>
+  <text x="240" y="190" class="note" text-anchor="middle">2X = X − 1, so X = −1</text>
+
+  <!-- Result -->
+  <text x="240" y="230" class="result" text-anchor="middle">X = −1</text>
+
+  <!-- Footer note -->
+  <text x="280" y="280" class="note" text-anchor="middle">
+    An infinite string of 1s is just −1 in two's-complement.
+  </text>
+  <text x="280" y="298" class="note" text-anchor="middle">
+    The universe runs on a two's-complement machine.
+  </text>
+</svg>

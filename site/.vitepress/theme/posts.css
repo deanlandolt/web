@@ -1,0 +1,90 @@
+/* ---- Posts index ---- */
+.dl-posts {
+  margin-top: 1.5rem;
+}
+.dl-posts-empty {
+  color: var(--vp-c-text-2);
+  font-family: var(--dl-mono);
+  font-size: 0.9rem;
+}
+.dl-posts-empty code {
+  font-size: 0.85rem;
+}
+
+/* Chronological posts list — title on the left, date pushed right. */
+.dl-posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dl-posts-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  font-family: var(--dl-mono);
+  font-size: 0.92rem;
+}
+.dl-posts-item a {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+.dl-posts-item a:hover {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+}
+.dl-posts-date {
+  color: var(--vp-c-text-3);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.dl-posts-uncommitted-badge {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--vp-c-text-3);
+  border: 1px dashed var(--vp-c-divider);
+  border-radius: 3px;
+  padding: 0 0.35em;
+}
+/* Editorial triage badge — dev-only. Color-coded by tier. */
+.dl-posts-status-badge {
+  font-size: 0.7rem;
+  border-radius: 3px;
+  padding: 0 0.35em;
+  border: 1px solid currentColor;
+  text-transform: lowercase;
+}
+.dl-posts-status-badge.is-ready {
+  color: var(--vp-c-green-1);
+}
+.dl-posts-status-badge.is-needs-work {
+  color: var(--vp-c-yellow-1);
+}
+.dl-posts-status-badge.is-thin {
+  color: var(--vp-c-text-3);
+}
+.dl-posts-status-badge.is-fragments {
+  color: var(--vp-c-red-1);
+}
+.dl-posts-tags {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+.dl-posts-tag {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 3px;
+  padding: 0 0.35em;
+}
+
+@media (max-width: 480px) {
+  .dl-posts-item {
+    flex-wrap: wrap;
+  }
+  .dl-posts-tags {
+    margin-left: 0;
+    width: 100%;
+  }
+}

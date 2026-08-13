@@ -1,0 +1,24 @@
+.DS_Store
+node_modules/
+site/.vitepress/cache/
+site/.vitepress/dist/
+
+# Uncommitted drafts — visible in local preview (pnpm dev) but never
+# committed. When a draft is ready, rename it to <slug>.md (drop the
+# .uncommitted suffix) and commit that. Applies to notes AND posts.
+*.uncommitted.md
+
+# Generated files — anything named *.generated.* is produced by a build
+# script and should never be hand-edited or committed. A single rule that
+# scales regardless of where the artifact lives.
+*.generated.*
+
+# Scratch / planning docs — working documents that are never content (never
+# notes, never published). Lives at the repo root as a hidden dotdir so it's
+# outside VitePress's content root (site/) entirely — no srcExclude needed.
+.scratch/
+
+# AGENTS.md — guidance for AI coding agents (and Dean). It's a working
+# agreement for the repo, not published content, and shouldn't be tracked or
+# shown in the public commit history.
+AGENTS.md

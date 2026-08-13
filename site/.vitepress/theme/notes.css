@@ -1,0 +1,144 @@
+/* ---- Notes index ---- */
+.dl-notes {
+  margin-top: 1.5rem;
+}
+.dl-notes-empty {
+  color: var(--vp-c-text-2);
+  font-family: var(--dl-mono);
+  font-size: 0.9rem;
+}
+.dl-notes-empty code {
+  font-size: 0.85rem;
+}
+
+/* Tag filter bar — single line, horizontally scrollable.
+   No "all" button; when no tags are active, all notes are shown. */
+.dl-notes-tags-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.dl-notes-tags-bar::-webkit-scrollbar {
+  height: 3px;
+}
+.dl-notes-tags-bar::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 3px;
+}
+.dl-notes-tag-btn {
+  font-family: var(--dl-mono);
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  background: transparent;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 3px;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.dl-notes-tag-btn:hover {
+  color: var(--vp-c-text-1);
+  border-color: var(--vp-c-text-3);
+}
+.dl-notes-tag-btn.is-active {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft, rgba(52, 81, 178, 0.08));
+}
+
+/* Flat notes list */
+.dl-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dl-notes-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  font-family: var(--dl-mono);
+  font-size: 0.92rem;
+}
+.dl-notes-list a {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+.dl-notes-list a:hover {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+}
+.dl-notes-tags {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+.dl-notes-tag {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 3px;
+  padding: 0 0.35em;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.dl-notes-tag:hover {
+  color: var(--vp-c-text-1);
+  border-color: var(--vp-c-text-3);
+}
+.dl-notes-tag.is-active {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+.dl-notes-draft-badge {
+  font-size: 0.7rem;
+  color: var(--vp-c-brand-1);
+  border: 1px dashed var(--vp-c-brand-1);
+  border-radius: 3px;
+  padding: 0 0.35em;
+  opacity: 0.7;
+}
+.dl-notes-uncommitted-badge {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--vp-c-text-3);
+  border: 1px dashed var(--vp-c-divider);
+  border-radius: 3px;
+  padding: 0 0.35em;
+}
+/* Editorial triage badge — dev-only. Color-coded by tier. */
+.dl-notes-status-badge {
+  font-size: 0.7rem;
+  border-radius: 3px;
+  padding: 0 0.35em;
+  border: 1px solid currentColor;
+  text-transform: lowercase;
+}
+.dl-notes-status-badge.is-ready {
+  color: var(--vp-c-green-1);
+}
+.dl-notes-status-badge.is-needs-work {
+  color: var(--vp-c-yellow-1);
+}
+.dl-notes-status-badge.is-thin {
+  color: var(--vp-c-text-3);
+}
+.dl-notes-status-badge.is-fragments {
+  color: var(--vp-c-red-1);
+}
+
+@media (max-width: 480px) {
+  .dl-notes-list li {
+    flex-wrap: wrap;
+  }
+  .dl-notes-tags {
+    margin-left: 0;
+    width: 100%;
+  }
+}

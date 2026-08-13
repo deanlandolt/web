@@ -1,0 +1,310 @@
+/**
+ * deanlandolt.com — theme
+ * A terminal/phosphor aesthetic: monospace everywhere, a quiet green
+ * accent, transparent surfaces, and an early-web sensibility. Dark-first.
+ * The ASCII torus is the hero; everything else stays out of its way.
+ */
+
+:root {
+  /* A restrained monospace display face for headings / accents. */
+  --dl-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas',
+    'Liberation Mono', monospace;
+  --dl-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+
+  /* Quiet accent — a phosphor-ish green that reads as "terminal" without
+     being a literal green-screen. */
+  --dl-accent: #5fb878;
+  --dl-accent-dim: #3f7a52;
+}
+
+:root {
+  --vp-font-family-base: var(--dl-sans);
+  --vp-font-family-mono: var(--dl-mono);
+  --vp-c-brand-1: var(--dl-accent);
+  --vp-c-brand-2: var(--dl-accent-dim);
+  --vp-c-brand-3: var(--dl-accent);
+}
+
+.dark {
+  --dl-accent: #6fd98c;
+  --dl-accent-dim: #4a9c66;
+  --vp-c-brand-1: var(--dl-accent);
+  --vp-c-brand-2: var(--dl-accent-dim);
+  --vp-c-brand-3: var(--dl-accent);
+}
+
+/* Headings lean monospace for the retro-modern feel. */
+h1, h2, h3 {
+  font-family: var(--dl-mono);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Links: classic underline-on-hover nod. */
+a {
+  text-underline-offset: 2px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Nav bar: transparent, mono, lowercase, slash-separated ────────── */
+
+.VPNavBar {
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  transition: none !important;
+}
+.VPNavBar .content {
+  background: transparent !important;
+}
+
+.VPNavBarTitle .title {
+  font-family: var(--dl-mono);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+
+.VPNavBarMenu {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.VPNavBarMenuLink {
+  position: relative;
+  font-family: var(--dl-mono);
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  padding: 0 0.5rem;
+  color: var(--vp-c-text-2) !important;
+  transition: color 0.12s ease;
+}
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-text-1) !important;
+  background: transparent !important;
+  text-decoration: none;
+}
+.VPNavBarMenuLink.active {
+  color: var(--dl-accent) !important;
+}
+.VPNavBarMenuLink + .VPNavBarMenuLink::before {
+  content: '/';
+  position: absolute;
+  left: -0.15rem;
+  color: var(--vp-c-text-3);
+  pointer-events: none;
+}
+
+/* Search button: strip DocSearch chrome, make it mono and plain. */
+.DocSearch-Button {
+  background: transparent !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 0 !important;
+  font-family: var(--dl-mono) !important;
+  font-size: 0.8rem !important;
+  height: 1.75rem !important;
+  padding: 0 0.6rem !important;
+  box-shadow: none !important;
+}
+.DocSearch-Button:hover {
+  border-color: var(--dl-accent) !important;
+  background: transparent !important;
+}
+.DocSearch-Button-Placeholder {
+  color: var(--vp-c-text-2) !important;
+  font-family: var(--dl-mono) !important;
+}
+.DocSearch-Button-Key {
+  font-family: var(--dl-mono) !important;
+  background: transparent !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--vp-c-text-3) !important;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+
+.dl-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 0;
+  padding: 3rem 1.5rem 1rem;
+  text-align: center;
+  pointer-events: none;
+}
+.dl-hero a {
+  pointer-events: auto;
+}
+
+.dl-hero-title {
+  font-family: var(--dl-mono);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.4);
+}
+:root:not(.dark) .dl-hero-title {
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7), 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.dl-hero-sub {
+  font-family: var(--dl-mono);
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+  margin: 0 0 2rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+:root:not(.dark) .dl-hero-sub {
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.6);
+}
+
+/* The ASCII art background. A <pre> element whose child <span> elements
+   get their textContent and color updated every frame — no WebGL, no canvas.
+   Fixed full-viewport so the shape floats in a wide field and never clips.
+   Sits behind the hero content (z-index: 0). Still draggable. */
+.dl-ascii-art {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  user-select: none;
+  cursor: grab;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-family: var(--dl-mono);
+  font-weight: 700;
+  font-size: clamp(0.35rem, 0.9vw, 0.65rem);
+  color: var(--dl-accent);
+  background: transparent !important;
+  opacity: 0.85;
+}
+.dl-ascii-art:active {
+  cursor: grabbing;
+}
+/* The <code> child is the single flex item — it preserves the preformatted
+   grid (white-space: pre) so all 60 rows render, unlike inline content
+   directly in a flex container which collapses whitespace text nodes. */
+.dl-ascii-art code {
+  display: block;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: pre;
+  text-align: left;
+  tab-size: 160;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+/* Vignette overlay — darkens edges so hero text is readable atop the torus. */
+.dl-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(10, 14, 20, 0.35) 35%,
+    rgba(10, 14, 20, 0.65) 65%,
+    rgba(10, 14, 20, 0.9) 100%
+  );
+}
+:root:not(.dark) .dl-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 35%,
+    rgba(255, 255, 255, 0.6) 65%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+}
+
+/* ── Quote: frosted pill so it reads over the torus ─────────────────── */
+
+.dl-quote-wrap {
+  min-height: 4.5em;
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 8px;
+  background: rgba(10, 14, 20, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+:root:not(.dark) .dl-quote-wrap {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.dl-quote {
+  font-family: var(--dl-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-1);
+  max-width: 38em;
+}
+.dl-quote-author {
+  font-family: var(--dl-mono);
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+}
+
+/* Footnote dagger linking to the quote's source attribution. */
+.dl-quote-dagger {
+  color: var(--vp-c-text-3);
+  text-decoration: none;
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 0.1em;
+  border-bottom: none;
+  transition: color 0.15s ease;
+}
+.dl-quote-dagger:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ── Footer: plain mono, transparent ───────────────────────────────── */
+
+.VPFooter {
+  font-family: var(--dl-mono);
+  font-size: 0.75rem;
+  background: transparent !important;
+  border-top: none !important;
+}
+.VPFooter .copyright,
+.VPFooter .message {
+  font-family: var(--dl-mono);
+  color: var(--vp-c-text-3);
+}
+
+/* ── Misc ──────────────────────────────────────────────────────────── */
+
+/* Thin <hr> rules feel very web-1.0. */
+hr {
+  border: none;
+  border-top: 1px solid var(--vp-c-divider);
+  margin: 2rem 0;
+}

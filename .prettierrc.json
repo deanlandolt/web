@@ -1,0 +1,15 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": ["**/*.vue"],
+      "options": {
+        "parser": "vue"
+      }
+    }
+  ]
+}

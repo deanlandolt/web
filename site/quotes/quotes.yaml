@@ -1,0 +1,379 @@
+# Quotes collection — the single source of truth.
+#
+# Each quote has:
+#   text:       the quote itself (use |> for prose, | for poetry/line breaks)
+#   author:     attributed author
+#   source:     URL verifying the attribution
+#   category:   thematic grouping for the index
+#   title:      (optional) page title — e.g. "Plutarch on the mind as fire".
+#               Also the basis for the URL slug. When omitted, falls back to
+#               "{author} on {category}".
+#   circa:      rough year, as an integer (CE) or string for BCE/ranges/"c."
+#   context:    short note on where/why it was said (the occasion)
+#   work:       the book/speech/paper it appeared in (when known)
+#   note:       editorial note (e.g., attribution ambiguity)
+#
+# At build time, VitePress dynamic routes read this file:
+#   - site/quotes/[slug].paths.js  generates one page per quote (no .md files
+#                                  on disk — VitePress builds them from the
+#                                  [slug].md template)
+#   - scripts/gen-quotes.mjs       writes quotes.generated.json for the
+#                                  client-side index, QuoteRef, and the home
+#                                  page rotating quote
+#
+# The quotes index page (site/quotes/index.md) loads the JSON and renders a
+# searchable, filterable listing that links to each individual quote page.
+
+# ── Mathematics ─────────────────────────────────────────────────────────────
+
+- text: >-
+    Pure mathematics is, in its way, the poetry of logical ideas.
+  author: Albert Einstein
+  source: https://en.wikiquote.org/wiki/Albert_Einstein
+  category: Mathematics
+  title: Einstein on the poetry of logical ideas
+  circa: 1935
+  work: "Address at Princeton University, on the occasion of the 7th bicentennial of Princeton"
+  note: "Sometimes dated 1940; Einstein reused the line in tributes to mathematicians."
+
+- text: >-
+    The distinction between the past, present and future is only a stubbornly
+    persistent illusion.
+  author: Albert Einstein
+  source: https://en.wikiquote.org/wiki/Albert_Einstein
+  category: Mathematics
+  title: Einstein on the illusion of time
+  circa: 1955
+  context: "Written to the family of his lifelong friend Michele Besso, shortly after Besso's death — weeks before Einstein's own."
+  work: "Letter to the Besso family"
+
+- text: >-
+    Mathematics is the art of giving the same name to different things.
+  author: Henri Poincaré
+  source: https://en.wikiquote.org/wiki/Henri_Poincar%C3%A9
+  category: Mathematics
+  title: Poincaré on the art of the same name
+  circa: 1908
+  work: "Science and Method"
+
+- text: >-
+    In mathematics you don't understand things. You just get used to them.
+  author: John von Neumann
+  source: https://en.wikiquote.org/wiki/John_von_Neumann
+  category: Mathematics
+  title: von Neumann on getting used to it
+  circa: 1950
+  context: "Reply to a fellow mathematician who said 'I don't understand this.' Apocryphal but widely attested."
+
+- text: >-
+    A mathematician is a machine for turning coffee into theorems.
+  author: Alfréd Rényi
+  source: https://en.wikiquote.org/wiki/Alfr%C3%A9d_R%C3%A9nyi
+  category: Mathematics
+  title: Rényi on coffee and theorems
+  circa: 1959
+  context: "Said to Paul Erdős, who adopted and popularized it. Often misattributed to Erdős himself."
+
+# ── Programming ──────────────────────────────────────────────────────────────
+
+- text: >-
+    The programmer, like the poet, works only slightly removed from pure
+    thought-stuff. He builds his castles in the air, from air, creating by
+    exertion of the imagination.
+  author: Fred Brooks
+  source: https://en.wikiquote.org/wiki/Fred_Brooks
+  category: Programming
+  title: Brooks on the poet as programmer
+  circa: 1975
+  work: "The Mythical Man-Month"
+
+- text: >-
+    Programs must be written for people to read, and only incidentally for
+    machines to execute.
+  author: Harold Abelson
+  source: https://en.wikiquote.org/wiki/Harold_Abelson
+  category: Programming
+  title: Abelson on code for humans
+  circa: 1985
+  work: "Structure and Interpretation of Computer Programs (SICP), opening of the preface"
+
+- text: >-
+    Simplicity is prerequisite for reliability.
+  author: Edsger W. Dijkstra
+  source: https://en.wikiquote.org/wiki/Edsger_W._Dijkstra
+  category: Programming
+  title: Dijkstra on simplicity and reliability
+  circa: 1973
+  work: "EWD 355 — 'On a cultural gap'"
+
+- text: >-
+    If debugging is the process of removing bugs, then programming must be the
+    process of putting them in.
+  author: Edsger W. Dijkstra
+  source: https://en.wikiquote.org/wiki/Edsger_W._Dijkstra
+  category: Programming
+  title: Dijkstra on putting bugs in
+  circa: 1970s
+  note: "Widely attributed to Dijkstra; appears in EWD collections in several variant phrasings."
+
+- text: >-
+    Computer science is no more about computers than astronomy is about
+    telescopes.
+  author: Edsger W. Dijkstra
+  source: https://en.wikiquote.org/wiki/Edsger_W._Dijkstra
+  category: Programming
+  title: Dijkstra on computers and telescopes
+  circa: 1970
+  note: "Often attributed to Dijkstra; sometimes also credited to Mike Fellows or Michael R. Fellows in variant form."
+
+- text: >-
+    Premature optimization is the root of all evil.
+  author: Donald Knuth
+  source: https://en.wikiquote.org/wiki/Donald_Knuth
+  category: Programming
+  title: Knuth on premature optimization
+  circa: 1974
+  work: "Structured Programming with go to Statements, ACM Computing Surveys, vol. 6, no. 4"
+
+# ── Hacking ──────────────────────────────────────────────────────────────────
+
+- text: >-
+    Those who don't understand Unix are condemned to reinvent it, poorly.
+  author: Henry Spencer
+  source: https://en.wikiquote.org/wiki/Unix
+  category: Hacking
+  title: Spencer on reinventing Unix poorly
+  circa: 1987
+  context: "Posted to the Usenet group comp.unix.wizards, 1987-11-08."
+
+- text: >-
+    Unix was not designed to stop its users from doing stupid things, as that
+    would also stop them from doing clever things.
+  author: Doug Gwyn
+  source: https://en.wikiquote.org/wiki/Unix
+  category: Hacking
+  title: Gwyn on stupid and clever things
+  circa: 1980s
+  context: "From the Unix-haters mailing list / culture."
+
+- text: >-
+    Make each program do one thing well. To do a new job, build fresh rather
+    than complicate old programs.
+  author: Doug McIlroy
+  source: https://en.wikiquote.org/wiki/Unix
+  category: Hacking
+  title: McIlroy on doing one thing well
+  circa: 1978
+  work: "Unix Programmer's Manual, Volume 2 — 'UNIX Time-Sharing System: Unix Implementation'"
+
+# ── Philosophy ───────────────────────────────────────────────────────────────
+
+- text: >-
+    The limits of my language mean the limits of my world.
+  author: Ludwig Wittgenstein
+  source: https://en.wikiquote.org/wiki/Ludwig_Wittgenstein
+  category: Philosophy
+  title: Wittgenstein on the limits of language
+  circa: 1922
+  work: "Tractatus Logico-Philosophicus, proposition 5.6"
+
+- text: >-
+    If a lion could speak, we could not understand him.
+  author: Ludwig Wittgenstein
+  source: https://en.wikiquote.org/wiki/Ludwig_Wittgenstein
+  category: Philosophy
+  title: Wittgenstein on the speaking lion
+  circa: 1953
+  work: "Philosophical Investigations, part II, xi (p. 223)"
+
+- text: >-
+    The unexamined life is not worth living.
+  author: Socrates
+  source: https://en.wikiquote.org/wiki/Socrates
+  category: Philosophy
+  title: Socrates on the unexamined life
+  circa: "399 BCE"
+  work: "Plato, Apology, 38a (Socrates at his trial)"
+
+- text: >-
+    We are what we repeatedly do. Excellence, then, is not an act, but a habit.
+  author: Will Durant
+  source: https://en.wikiquote.org/wiki/Will_Durant
+  category: Philosophy
+  title: Durant on excellence as habit
+  circa: 1926
+  work: "The Story of Philosophy, II.Aristotle"
+  note: "Paraphrasing Aristotle's Nicomachean Ethics. Often misattributed to Aristotle directly."
+
+- text: >-
+    The whole problem with the world is that fools and fanatics are always so
+    certain of themselves, and wiser people so full of doubts.
+  author: Bertrand Russell
+  source: https://en.wikiquote.org/wiki/Bertrand_Russell
+  category: Philosophy
+  title: Russell on fools and fanatics
+  circa: 1933
+  work: "Mortals and Others: Bertrand Russell's American Essays, 1931-1935"
+
+- text: >-
+    If I lack awareness, why should I care what happens to me when I'm dead?
+  author: Diogenes
+  source: https://en.wikiquote.org/wiki/Diogenes_of_Sinope
+  category: Philosophy
+  title: Diogenes on caring about death
+  circa: "c. 350 BCE"
+  note: "Commonly attributed to Diogenes of Sinope; the anecdote tradition is via Diogenes Laertius."
+
+- text: >-
+    The mob is the mother of tyrants.
+  author: Diogenes
+  source: https://en.wikiquote.org/wiki/Diogenes_of_Sinope
+  category: Philosophy
+  title: Diogenes on the mob and tyrants
+  circa: "c. 350 BCE"
+  context: "On the tyranny of democracy."
+
+- text: >-
+    If I were not Alexander, I would wish to be Diogenes.
+  author: Alexander the Great
+  source: https://en.wikiquote.org/wiki/Diogenes_of_Sinope
+  category: Philosophy
+  title: Alexander on wishing to be Diogenes
+  circa: "c. 336 BCE"
+  context: "Said upon meeting Diogenes in Corinth, after the philosopher told him to stop blocking his sunlight."
+
+- text: >-
+    If I were not Diogenes, I would also wish to be Diogenes.
+  author: Diogenes
+  source: https://en.wikiquote.org/wiki/Diogenes_of_Sinope
+  category: Philosophy
+  title: Diogenes on wishing to be Diogenes
+  circa: "c. 336 BCE"
+  context: "Diogenes's reply to Alexander the Great."
+
+- text: >-
+    Nature gave us one tongue but two ears so that we may listen twice as much
+    as we speak.
+  author: Zeno of Citium
+  source: https://en.wikiquote.org/wiki/Zeno_of_Citium
+  category: Philosophy
+  title: Zeno on two ears, one tongue
+  circa: "c. 300 BCE"
+  note: "Attribution between Zeno of Citium and Diogenes is genuinely ambiguous; the vault note flags this."
+
+- text: >-
+    Wise men speak because they have something to say; fools because they have
+    to say something.
+  author: Plato
+  source: https://en.wikiquote.org/wiki/Plato
+  category: Philosophy
+  title: Plato on wise men and fools
+  circa: "c. 370 BCE"
+  note: "Widely attributed to Plato but the exact dialogue is uncertain; commonly circulated as a Platonic aphorism."
+
+# ── Craft ───────────────────────────────────────────────────────────────────
+
+- text: >-
+    Simplicity is the ultimate sophistication.
+  author: Leonardo da Vinci
+  source: https://en.wikiquote.org/wiki/Leonardo_da_Vinci
+  category: Craft
+  title: da Vinci on simplicity as sophistication
+  note: "A popular attribution; the line appears widely but a definitive source in Leonardo's notebooks is uncertain."
+
+- text: >-
+    Perfection is achieved not when there is nothing more to add, but when
+    there is nothing left to take away.
+  author: Antoine de Saint-Exupéry
+  source: https://en.wikiquote.org/wiki/Antoine_de_Saint-Exup%C3%A9ry
+  category: Craft
+  title: Saint-Exupéry on nothing left to take away
+  circa: 1939
+  work: "Wind, Sand and Stars (Terre des hommes), ch. III"
+
+- text: >-
+    Everything should be made as simple as possible, but not simpler.
+  author: Albert Einstein
+  source: https://en.wikiquote.org/wiki/Albert_Einstein
+  category: Craft
+  title: Einstein on simple as possible
+  note: "A paraphrase attributed to Einstein; the exact phrasing is likely a later distillation of his writings on simplicity."
+
+- text: >-
+    Make it work, make it right, make it fast.
+  author: Kent Beck
+  source: https://en.wikiquote.org/wiki/Kent_Beck
+  category: Programming
+  title: Beck on work, right, fast
+  circa: 1990s
+  context: "Beck's sequencing for software development — get to working first, then refine."
+
+# ── Education ───────────────────────────────────────────────────────────────
+
+- text: >-
+    The mind is not a vessel that needs filling, but wood that needs igniting —
+    no more — and then it motivates one towards originality and instills the
+    desire for truth. Suppose someone were to go and ask his neighbors for fire
+    and find a substantial blaze there, and just stay there continually warming
+    himself: that is no different from someone who goes to someone else to get
+    some of his rationality, and fails to realize that he ought to ignite his
+    own flame, his own intellect, but is happy to sit entranced by the lecture,
+    and the words trigger only associative thinking and bring, as it were, only
+    a flush to his cheeks and a glow to his limbs; but he has not dispelled or
+    dispersed, in the warm light of philosophy, the internal dank gloom of his
+    mind.
+  author: Plutarch
+  source: https://conversational-leadership.net/quotation/mind-vessel-fire-kindled/
+  category: Education
+  title: Plutarch on the mind as fire
+  circa: "c. 100 CE"
+  work: "Moralia — On Listening to Lectures"
+  note: "The popular short form ('The mind is not a vessel that needs filling, but wood that needs igniting') is a modern paraphrase of this longer passage."
+
+- text: >-
+    I don't know what I may seem to the world, but as to myself I seem to have
+    been only like a boy playing on the seashore and diverting myself now and
+    then in finding a smoother pebble or a prettier shell than the ordinary,
+    whilst the great ocean of truth lay all undiscovered before me.
+  author: Isaac Newton
+  source: https://en.wikiquote.org/wiki/Isaac_Newton
+  category: Education
+  title: Newton on the boy by the sea
+  circa: 1727
+  context: "His last words, as recorded by Joseph Spence."
+  work: "Recorded in Joseph Spence, Anecdotes, Observations and Characters of Books and Men"
+
+# ── Poetry ───────────────────────────────────────────────────────────────────
+
+- text: |
+    Look on my works, ye Mighty, and despair!
+    Nothing beside remains. Round the decay
+    Of that colossal wreck, boundless and bare
+    The lone and level sands stretch far away.
+  author: Percy Bysshe Shelley
+  source: https://en.wikiquote.org/wiki/Ozymandias
+  category: Poetry
+  title: Shelley on Ozymandias and the sands
+  circa: 1818
+  work: "Ozymandias (lines 10-14), published 1818 in The Examiner"
+
+# ── Hacking (cont.) ──────────────────────────────────────────────────────────
+
+- text: >-
+    If the result loops with period = 1 with sign +, you are on a
+    sign-magnitude machine. If the result loops with period = 1 at −1, you are
+    on a twos-complement machine. If the result loops with period greater than
+    1, including the beginning, you are on a ones-complement machine. If the
+    result loops with period greater than 1, not including the beginning, your
+    machine isn't binary — the pattern should tell you the base. If you run out
+    of memory, you are on a string or bignum system. If arithmetic overflow is
+    a fatal error, some fascist pig with a read-only mind is trying to enforce
+    machine independence. But the very ability to trap overflow is machine
+    dependent.
+  author: Bill Gosper
+  source: https://en.wikipedia.org/wiki/HAKMEM
+  category: Hacking
+  title: Gosper on twos-complement fascism
+  circa: 1972
+  work: "HAKMEM, MIT AI Memo 239, item 154"
+  context: "Gosper's deadpan classification of number representations by their overflow behavior, concluding that the universe runs on two's complement."

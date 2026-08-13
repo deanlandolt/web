@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  # Deploy whenever a new commit is pushed to main.
+  push:
+    branches: [main]
+  # Allow manual deploys from GitHub’s UI.
+  workflow_dispatch: {}
+
+# Only one deploy at a time; cancel superseded runs.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+# Explicit top-level permissions so the workflow doesn't depend on the repo's
+# "Workflow permissions" default being read-write. Without this, a repo set to
+# read-only token permissions blocks the build job before any runner starts
+# (job fails in ~3s with no steps executed). Pages deploys need write access.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  # actions/deploy-pages@v4+ requires `actions: read` to resolve the
+  # uploaded artifact by ID.
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        # No `version` here — pnpm/action-setup@v4 reads `packageManager`
+        # from package.json ("pnpm@10.18.2") automatically. Specifying
+        # `version` in the workflow AND packageManager in package.json
+        # causes "Multiple versions of pnpm specified" errors.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/.vitepress/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
